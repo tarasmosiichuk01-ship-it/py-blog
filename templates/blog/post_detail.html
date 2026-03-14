@@ -3,7 +3,7 @@
 
 {% block content %}
   <h1>{{ object.title }}</h1>
-  <span>{{ object.owner }} {{ object.created_time }}</span>
+  <span>{{ object.author }} {{ object.created_time }}</span>
   <br>
   <p>{{ object.content }}</p>
   <div class="ml-3">
@@ -12,7 +12,7 @@
 
     {% for comment in commentaries %}
         <hr>
-        <span>{{ comment.user }}</span>
+        <span>{{ comment.author }}</span>
         <br>
         <p>{{ comment.created_time }}</p>
         <p>{{ comment.content }}</p>
