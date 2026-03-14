@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>{{ object.title }}</h1>
+  <span>{{ object.owner }} {{ object.created_time }}</span>
+  <br>
+  <p>{{ object.content }}</p>
+  <div class="ml-3">
+    <p>{{ commentaries.count }} comments</p>
+    <h4>Comments:</h4>
+
+    {% for comment in commentaries %}
+        <hr>
+        <span>{{ comment.user }}</span>
+        <br>
+        <p>{{ comment.created_time }}</p>
+        <p>{{ comment.content }}</p>
+    {% empty %}
+      <p>No comments!</p>
+    {% endfor %}
+   <h2><strong>Add a new comment</strong></h2>
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <input type="submit" value="Add comment" class="btn btn-primary">
+    </form>
+  </div>
+{% endblock %}
