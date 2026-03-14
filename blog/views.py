@@ -36,7 +36,7 @@ class PostDetailView(generic.DetailView):
             if request.user.is_authenticated:
                 comment = form.save(commit=False)
                 comment.post = self.object
-                comment.user = request.user
+                comment.author = request.user
                 comment.save()
                 return redirect("blog:post-detail", self.object.pk)
             else:
@@ -47,8 +47,8 @@ class PostDetailView(generic.DetailView):
                     context={
                         "form": form,
                         "object": self.object,
-                        "commentaries": self.object.commentaries.all()
-                    }
+                        "commentaries": self.object.commentaries.all(),
+                    },
                 )
         else:
             return render(
@@ -57,6 +57,6 @@ class PostDetailView(generic.DetailView):
                 context={
                     "form": form,
                     "object": self.object,
-                    "commentaries": self.object.commentaries.all()
-                }
+                    "commentaries": self.object.commentaries.all(),
+                },
             )
